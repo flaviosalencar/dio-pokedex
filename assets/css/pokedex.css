@@ -4,6 +4,8 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+    min-width: 180px;
 }
 
 .normal {
@@ -81,7 +83,7 @@
 .pokemon {
     display: flex;
     flex-direction: column;
-    margin: .5rem;
+    margin: 0.5rem;
     padding: 1rem;
     border-radius: 1rem;
 }
@@ -97,12 +99,14 @@
     text-transform: capitalize;
     color: #fff;
     margin-bottom: .25rem;
+    text-align: center;
+    padding-bottom: 2rem;
 }
 
 .pokemon .detail {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    /*align-items: center;*/
     justify-content: space-between;
 }
 
@@ -124,7 +128,19 @@
 
 .pokemon .detail img {
     max-width: 100%;
-    height: 70px;
+    height: 100px;
+    transform: translateX(20px);
+}
+
+.pokemon .detail .statsList .stats {
+    /*display: none;*/
+    transform: translateX(-999999px);
+    list-style: none;
+    color: #fff;
+    font-size: .625rem;
+    text-align: left;
+    text-transform: uppercase;
+    padding: 0;
 }
 
 .pagination {
@@ -146,20 +162,53 @@
     border-radius: 1rem;
 }
 
-@media screen and (min-width: 380px) {
+.pokedex-control .form-control {
+    margin: 1rem 2rem;
+    font-size: 1.1rem;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: .5rem;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+}
+
+.pokemon:hover {
+    box-shadow: 0rem 0rem 0.625rem #000;
+    border-bottom: 20px;
+}
+
+.pokemon:hover .detail .statsList .stats {
+    transform: translateX(-20px);
+    text-align: left;
+}
+
+@media screen and (min-width: 440px) {
     .pokemons {
         grid-template-columns: 1fr 1fr;
     }
-}
 
-@media screen and (min-width: 576px) {
-    .pokemons {
-        grid-template-columns: 1fr 1fr 1fr;
+    .pokedex-control .form-control {
+        grid-template-columns: 75%;
     }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 660px) {
+    .pokemons {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .pokedex-control .form-control {
+        grid-template-columns: 50%;
+    }
+}
+
+@media screen and (min-width: 880px) {
     .pokemons {
         grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .pokedex-control .form-control {
+        grid-template-columns: 50%;
     }
 }

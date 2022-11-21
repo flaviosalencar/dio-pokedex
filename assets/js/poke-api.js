@@ -8,13 +8,26 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
 
     const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name)
     const [type] = types
-
     pokemon.types = types
     pokemon.type = type
+
+    const statBase = pokeDetail.stats.map((statSlot) => statSlot.base_stat)
+    const statName = pokeDetail.stats.map((statSlot) => statSlot.stat.name)
+    pokemon.stats = getStatsList(statBase, statName)
 
     pokemon.photo = pokeDetail.sprites.other.dream_world.front_default
 
     return pokemon
+}
+
+function getStatsList(statBase, statName) {
+    let statsList = [];
+    for (let i = 0; i < statBase.length; i++) {
+        const value = statBase[i];
+        const name = statName[i];
+        statsList = statsList.concat(name + '= ' + value)                                   //Adiciona os tipos
+    }
+    return statsList;
 }
 
 pokeApi.getPokemonDetail = (pokemon) => {
